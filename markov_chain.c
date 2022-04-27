@@ -8,7 +8,7 @@ MarkovNode *get_first_random_node (MarkovChain *markov_chain)
 {
   int random = randomize_number (markov_chain->database->size);
   Node *runner = markov_chain->database->first;
-  for (int i = 0; i < random; ++i)
+  for (int i = 0; i <= random; ++i)
     {
       runner = runner->next;
     }
