@@ -25,14 +25,14 @@ static bool get_file (char *s, FILE **pf);
 
 static void print_tweets (int how_much_tweets, MarkovChain *chain);
 
-bool is_last (void *s)
+bool is_lst (void *s)
 {
   return ((char *) s)[strlen (((char *) s)) - 1] == '.';
 }
 
 void print (void *s)
 {
-  if (is_last (s))
+  if (is_lst (s))
     {
       printf ("%s", (char *) s);
     }
@@ -69,7 +69,7 @@ int main (int argc, char *argv[])
       srand (seed);
       MarkovChain *chain = init_markov_chain
           (&print, &free,
-           &compare, &copy, &is_last);
+           &compare, &copy, &is_lst);
       if (chain == NULL)
         {
           printf (ALLOCATION_ERROR_MASSAGE);
