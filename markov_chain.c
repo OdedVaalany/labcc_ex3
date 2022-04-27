@@ -6,19 +6,18 @@
 
 MarkovNode *get_first_random_node (MarkovChain *markov_chain)
 {
-  Node *runner = markov_chain->database->first;
+  Node *ptr;
   do
     {
-
-      int random = randomize_number (markov_chain->database->size);
-      Node *runner = markov_chain->database->first;
-      for (int i = 0; i < random; ++i)
+      int position = randomize_number (markov_chain->database->size);
+      ptr = markov_chain->database->first;
+      for (int i = 0; i < position; ++i)
         {
-          runner = runner->next;
+          ptr = ptr->next;
         }
     }
-  while (((MarkovNode *) runner->data)->final);
-  return ((MarkovNode *) runner->data);
+  while (((MarkovNode *)ptr->data)->final);
+  return ptr->data;
 }
 
 MarkovNode *get_next_random_node (MarkovNode *state_struct_ptr)
