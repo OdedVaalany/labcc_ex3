@@ -1,7 +1,7 @@
 #ifndef _MARKOV_CHAIN_H
 #define _MARKOV_CHAIN_H
 
-#include "linkedList.h"
+#include "linked_list.h"
 #include <stdio.h>  // For printf(), sscanf()
 #include <stdlib.h> // For exit(), malloc()
 #include <stdbool.h> // for bool
