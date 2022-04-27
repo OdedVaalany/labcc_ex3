@@ -16,7 +16,7 @@
 #define MAX_ARGS 5
 #define MAX_WORDS_AT_TWEET 20
 
-int static fill_database (FILE *fp, int words_to_read, MarkovChain
+static int fill_database (FILE *fp, int words_to_read, MarkovChain
 *markov_chain);
 
 static bool str_to_int (char *s, int *value);

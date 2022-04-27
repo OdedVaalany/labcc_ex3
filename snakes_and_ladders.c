@@ -41,8 +41,10 @@ const int transitions[][2] = {{13, 4},
  */
 typedef struct Cell {
     int number; // Cell number 1-100
-    int ladder_to;  // ladder_to represents the jump of the ladder in case there is one from this square
-    int snake_to;  // snake_to represents the jump of the snake in case there is one from this square
+    int ladder_to;  // ladder_to represents the jump of the ladder
+    // in case there is one from this square
+    int snake_to;  // snake_to represents the jump of the snake in
+    // case there is one from this square
     //both ladder_to and snake_to should be -1 if the Cell doesn't have them
 } Cell;
 
@@ -111,14 +113,17 @@ static int fill_database (MarkovChain *markov_chain)
 
   for (size_t i = 0; i < BOARD_SIZE; i++)
     {
-      from_node = get_node_from_database (markov_chain, cells[i])->data;
+      from_node = get_node_from_database (markov_chain,
+                                          cells[i])->data;
 
       if (cells[i]->snake_to != EMPTY || cells[i]->ladder_to != EMPTY)
         {
           index_to = MAX(cells[i]->snake_to, cells[i]->ladder_to) - 1;
-          to_node = get_node_from_database (markov_chain, cells[index_to])
+          to_node = get_node_from_database (markov_chain,
+                                            cells[index_to])
               ->data;
-          add_node_to_counter_list (from_node, to_node, markov_chain);
+          add_node_to_counter_list (from_node,
+                                    to_node, markov_chain);
         }
       else
         {
@@ -129,9 +134,11 @@ static int fill_database (MarkovChain *markov_chain)
                 {
                   break;
                 }
-              to_node = get_node_from_database (markov_chain, cells[index_to])
+              to_node = get_node_from_database (markov_chain,
+                                                cells[index_to])
                   ->data;
-              add_node_to_counter_list (from_node, to_node, markov_chain);
+              add_node_to_counter_list (from_node,
+                                        to_node, markov_chain);
             }
         }
     }
@@ -198,7 +205,7 @@ void *copy_cell (void *cell)
     {
       return NULL;
     }
-  memcpy(temp, cell, sizeof (Cell));
+  memcpy (temp, cell, sizeof (Cell));
   return temp;
 }
 
@@ -254,6 +261,6 @@ int main (int argc, char *argv[])
     {
       printf (INPUT_ERROR_FOR_THE_USER);
     }
-  return EXIT_SUCCESS
+  return EXIT_SUCCESS;
 }
 
