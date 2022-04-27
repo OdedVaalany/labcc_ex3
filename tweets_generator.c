@@ -21,6 +21,8 @@ static int fill_database (FILE *fp, int words_to_read, MarkovChain
 
 static bool str_to_int (char *s, int *value);
 
+bool str_to_unint (char *s, unsigned int *value);
+
 static bool get_file (char *s, FILE **pf);
 
 static void print_tweets (int how_much_tweets, MarkovChain *chain);
@@ -55,14 +57,15 @@ int compare (void *a, void *b)
 }
 int main (int argc, char *argv[])
 {
-  int tweets_to_generate, seed, words_to_read;
+  int tweets_to_generate, words_to_read;
+  unsigned int seed;
   FILE *fp;
   if (!(argc == MAX_ARGS && str_to_int (argv[4], &words_to_read)))
     {
       words_to_read = -1;
     }
   if (((argc == MIN_ARGS) || (argc == MAX_ARGS))
-      && str_to_int (argv[1], &seed) &&
+      && str_to_unint (argv[1], &seed) &&
       str_to_int (argv[2], &tweets_to_generate) &&
       get_file (argv[3], &fp))
     {
@@ -126,7 +129,7 @@ static int fill_database (FILE *fp, int words_to_read, MarkovChain
               break;
             }
         }
-      else if (x != ' ' && x!= EOF && x!='\n')
+      else if (x != ' ' && x != EOF && x != '\n')
         {
           word[position] = x;
           position++;
@@ -151,6 +154,15 @@ static void print_tweets (int how_much_tweets, MarkovChain *chain)
 bool str_to_int (char *s, int *value)
 {
   if (sscanf (s, "%d", value) == 1)
+    {
+      return true;
+    }
+  return false;
+}
+
+bool str_to_unint (char *s, unsigned int *value)
+{
+  if (sscanf (s, "%ud", value) == 1)
     {
       return true;
     }
