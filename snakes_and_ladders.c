@@ -174,11 +174,11 @@ void print_cell (void *cell)
   Cell *temp = (Cell *) cell;
   if (temp->ladder_to != -1)
     {
-      printf ("[%d]-ladder to %d ->", temp->number, temp->ladder_to);
+      printf ("[%d]-ladder to %d -> ", temp->number, temp->ladder_to);
     }
   else if (temp->snake_to != -1)
     {
-      printf ("[%d]-snake to %d ->", temp->number, temp->snake_to);
+      printf ("[%d]-snake to %d -> ", temp->number, temp->snake_to);
     }
   else
     {
