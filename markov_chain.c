@@ -205,6 +205,5 @@ MarkovChain *init_markov_chain (void_to_void
 
 int randomize_number (int max_value)
 {
-  int x = (rand ()) % max_value;
-  return x;
+  return (rand ()) % max_value;
 }

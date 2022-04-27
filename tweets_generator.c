@@ -126,7 +126,7 @@ static int fill_database (FILE *fp, int words_to_read, MarkovChain
               break;
             }
         }
-      else if (x != ' ')
+      else if (x != ' ' && x!= EOF && x!='\n')
         {
           word[position] = x;
           position++;
