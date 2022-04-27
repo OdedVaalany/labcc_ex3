@@ -73,8 +73,8 @@ void free_markov_chain (MarkovChain **markov_chain)
       free (temp);
     }
   free ((*markov_chain)->database);
-  free((*markov_chain));
-  (*markov_chain)=NULL;
+  free ((*markov_chain));
+  (*markov_chain) = NULL;
 }
 
 bool add_node_to_counter_list (MarkovNode *first_node, MarkovNode
@@ -114,7 +114,8 @@ Node *get_node_from_database (MarkovChain *markov_chain, void *data_ptr)
   Node *runner = markov_chain->database->first;
   while (runner != NULL)
     {
-      if (markov_chain->comp_func (((MarkovNode *) runner->data)->data, data_ptr)
+      if (markov_chain->comp_func
+          (((MarkovNode *) runner->data)->data, data_ptr)
           == 0)
         {
           return runner;
@@ -135,7 +136,10 @@ Node *add_to_database (MarkovChain *markov_chain, void *data_ptr)
     {
       MarkovNode *temp_markov_node =
           init_markov_node (data_ptr, markov_chain);
-      if (temp_markov_node == NULL) return NULL;
+      if (temp_markov_node == NULL)
+        {
+          return NULL;
+        }
       if (add (markov_chain->database, (void *) temp_markov_node))
         {
           markov_chain->free_data (temp_markov_node->data);
@@ -150,7 +154,10 @@ Node *add_to_database (MarkovChain *markov_chain, void *data_ptr)
 MarkovNode *init_markov_node (void *data_ptr, MarkovChain *markov_chain)
 {
   MarkovNode *temp = malloc (sizeof (MarkovNode));
-  if (temp == NULL) return NULL;
+  if (temp == NULL)
+    {
+      return NULL;
+    }
   temp->counter_list = malloc (sizeof (NextNodeCounter));
   if (temp->counter_list == NULL)
     {
@@ -178,7 +185,10 @@ MarkovChain *init_markov_chain (void_to_void
                                 is_last)
 {
   MarkovChain *temp = malloc (sizeof (MarkovChain));
-  if (temp == NULL) return NULL;
+  if (temp == NULL)
+    {
+      return NULL;
+    }
   temp->database = malloc (sizeof (LinkedList));
   if (temp->database == NULL)
     {

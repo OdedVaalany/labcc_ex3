@@ -1,12 +1,13 @@
-#ifndef markovChain_h
-#define markovChain_h
+#ifndef _MARKOV_CHAIN_H
+#define _MARKOV_CHAIN_H
 
 #include "linkedList.h"
 #include <stdio.h>  // For printf(), sscanf()
 #include <stdlib.h> // For exit(), malloc()
 #include <stdbool.h> // for bool
 
-#define ALLOCATION_ERROR_MASSAGE "Allocation failure: Failed to allocate new memory\n"
+#define ALLOCATION_ERROR_MASSAGE \
+  "Allocation failure: Failed to allocate new memory\n"
 
 
 /***************************/
@@ -15,7 +16,7 @@
 
 typedef void (*void_to_void) (void *);
 typedef int (*two_void_to_int) (void *, void *);
-typedef void* (*gcopy) (void *);
+typedef void *(*gcopy) (void *);
 typedef bool (*void_to_bool) (void *);
 
 /***************************/
@@ -46,21 +47,25 @@ typedef struct MarkovChain {
     // returns void.
     void_to_void print_func;
 
-    // pointer to a func that gets 2 pointers of generic data type(same one) and compare between them */
+    // pointer to a func that gets 2 pointers of generic data type(
+    // same one) and compare between them */
     // returns: - a positive value if the first is bigger
     //          - a negative value if the second is bigger
     //          - 0 if equal
     two_void_to_int comp_func;
 
-    // a pointer to a function that gets a pointer of generic data type and frees it.
+    // a pointer to a function that gets a pointer of generic
+    // data type and frees it.
     // returns void.
     void_to_void free_data;
 
-    // a pointer to a function that  gets a pointer of generic data type and returns a newly allocated copy of it
+    // a pointer to a function that  gets a pointer of generic data
+    // type and returns a newly allocated copy of it
     // returns a generic pointer.
     gcopy copy_func;
 
-    //  a pointer to function that gets a pointer of generic data type and returns:
+    //  a pointer to function that gets a pointer of generic
+    //  data type and returns:
     //      - true if it's the last state.
     //      - false otherwise.
     void_to_bool is_last;
@@ -84,7 +89,8 @@ MarkovNode *get_next_random_node (MarkovNode *state_struct_ptr);
  * Receive markov_chain, generate and print random sentence out of it. The
  * sentence most have at least 2 words in it.
  * @param markov_chain
- * @param first_node markov_node to start with, if NULL- choose a random markov_node
+ * @param first_node markov_node to start with,
+ * if NULL- choose a random markov_node
  * @param  max_length maximum length of chain to generate
  */
 void generate_random_sequence (MarkovChain *markov_chain, MarkovNode *
@@ -109,7 +115,8 @@ bool add_node_to_counter_list (MarkovNode *first_node, MarkovNode
 *second_node, MarkovChain *markov_chain);
 
 /**
-* Check if data_ptr is in database. If so, return the markov_node wrapping it in
+* Check if data_ptr is in database. If so, return the
+ * markov_node wrapping it in
  * the markov_chain, otherwise return NULL.
  * @param markov_chain the chain to look in its database
  * @param data_ptr the state to look for
@@ -151,9 +158,9 @@ MarkovNode *init_markov_node (void *data_ptr, MarkovChain *markov_chain);
  * the last state
  */
 MarkovChain *init_markov_chain (void_to_void
-print_func,
-void_to_void free_data, two_void_to_int
-comp_func,
-gcopy copy_func, void_to_bool
-is_last);
+                                print_func,
+                                void_to_void free_data, two_void_to_int
+                                comp_func,
+                                gcopy copy_func, void_to_bool
+                                is_last);
 #endif /* markovChain_h */
