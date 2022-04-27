@@ -6,16 +6,18 @@
 
 MarkovNode *get_first_random_node (MarkovChain *markov_chain)
 {
-  int random = randomize_number (markov_chain->database->size);
   Node *runner = markov_chain->database->first;
-  for (int i = 0; i <= random; ++i)
+  do
     {
-      runner = runner->next;
+
+      int random = randomize_number (markov_chain->database->size);
+      Node *runner = markov_chain->database->first;
+      for (int i = 0; i < random; ++i)
+        {
+          runner = runner->next;
+        }
     }
-  if (((MarkovNode *) runner->data)->final)
-    {
-      return get_first_random_node (markov_chain);
-    }
+  while (((MarkovNode *) runner->data)->final);
   return ((MarkovNode *) runner->data);
 }
 
