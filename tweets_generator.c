@@ -15,7 +15,6 @@
 #define MIN_ARGS 4
 #define MAX_ARGS 5
 #define MAX_WORDS_AT_TWEET 20
-static bool allocation_error = false;
 
 int static fill_database (FILE *fp, int words_to_read, MarkovChain
 *markov_chain);
