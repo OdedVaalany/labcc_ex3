@@ -19,11 +19,11 @@
 int static fill_database (FILE *fp, int words_to_read, MarkovChain
 *markov_chain);
 
-bool static str_to_int (char *s, int *value);
+static bool str_to_int (char *s, int *value);
 
-bool static get_file (char *s, FILE **pf);
+static bool get_file (char *s, FILE **pf);
 
-void static print_tweets (int how_much_tweets, MarkovChain *chain);
+static void print_tweets (int how_much_tweets, MarkovChain *chain);
 
 bool is_last (void *s)
 {
@@ -45,7 +45,7 @@ void print (void *s)
 void *copy (void *s)
 {
   char *temp = malloc (strlen (s) + 1);
-  memcpy(temp, s, strlen ((char *) s) + 1);
+  memcpy (temp, s, strlen ((char *) s) + 1);
   return (void *) temp;
 }
 
@@ -61,8 +61,8 @@ int main (int argc, char *argv[])
     {
       words_to_read = -1;
     }
-  if (((argc == MIN_ARGS) || (argc == MAX_ARGS)) && str_to_int (argv[1], &seed)
-      &&
+  if (((argc == MIN_ARGS) || (argc == MAX_ARGS))
+      && str_to_int (argv[1], &seed) &&
       str_to_int (argv[2], &tweets_to_generate) &&
       get_file (argv[3], &fp))
     {
@@ -92,7 +92,7 @@ int main (int argc, char *argv[])
   return EXIT_SUCCESS;
 }
 
-int static fill_database (FILE *fp, int words_to_read, MarkovChain
+static int fill_database (FILE *fp, int words_to_read, MarkovChain
 *markov_chain)
 {
   int word_counter = 0, position = 0;
@@ -112,7 +112,8 @@ int static fill_database (FILE *fp, int words_to_read, MarkovChain
           if (word_counter > 0 && !previous_word->final)
             {
               if (add_node_to_counter_list (previous_word,
-                                            new_node, markov_chain) == false)
+                                            new_node,
+                                            markov_chain) == false)
                 {
                   return 1;
                 }
@@ -135,7 +136,7 @@ int static fill_database (FILE *fp, int words_to_read, MarkovChain
   return 0;
 }
 
-void static print_tweets (int how_much_tweets, MarkovChain *chain)
+static void print_tweets (int how_much_tweets, MarkovChain *chain)
 {
   MarkovNode *first_node;
   for (int i = 0; i < how_much_tweets; ++i)
@@ -156,7 +157,7 @@ bool str_to_int (char *s, int *value)
   return false;
 }
 
-bool static get_file (char *s, FILE **pf)
+static bool get_file (char *s, FILE **pf)
 {
   FILE *temp = fopen (s, "r");
   if (temp == NULL)

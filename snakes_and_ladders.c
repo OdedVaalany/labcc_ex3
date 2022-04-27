@@ -254,5 +254,6 @@ int main (int argc, char *argv[])
     {
       printf (INPUT_ERROR_FOR_THE_USER);
     }
+  return EXIT_SUCCESS
 }
 
