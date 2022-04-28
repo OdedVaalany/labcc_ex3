@@ -51,6 +51,17 @@ void *copy (void *s)
   return (void *) temp;
 }
 
+void print_data_base(MarkovChain *a)
+{
+  Node* ptr = a->database->first;
+  while(ptr != NULL)
+    {
+      a->print_func(((MarkovNode *)ptr->data)->data);
+      printf (" -> ");
+      ptr=ptr->next;
+    }
+}
+
 int compare (void *a, void *b)
 {
   return strcmp ((char *) a, (char *) b);
