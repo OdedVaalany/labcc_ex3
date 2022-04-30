@@ -20,20 +20,10 @@ MarkovNode *get_first_random_node (MarkovChain *markov_chain)
   return ptr->data;
 }
 
-void Print(int num, MarkovNode *a)
-{
-  for(int i =0;i<a->counter_list_len ; i++)
-    {
-      printf("%d %d",num,(a->counter_list+i)->frequency);
-    }
-    printf("\n");
-}
-
 MarkovNode *get_next_random_node (MarkovNode *state_struct_ptr)
 {
   int random_number = randomize_number (state_struct_ptr->total_next_word);
   int sum = 0;
-  Print (random_number,state_struct_ptr);
   NextNodeCounter *ptr = state_struct_ptr->counter_list;
   while(ptr!= NULL)
     {
@@ -94,7 +84,7 @@ bool add_node_to_counter_list (MarkovNode *first_node, MarkovNode
   NextNodeCounter *runner = first_node->counter_list;
   for (int i = 0; i < first_node->counter_list_len; i++)
     {
-      if (markov_chain->comp_func (first_node->data, (runner
+      if (markov_chain->comp_func (second_node->data, (runner
                                                       + i)->markov_node->data)
           == 0)
         {
