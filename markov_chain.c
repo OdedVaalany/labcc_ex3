@@ -107,7 +107,6 @@ bool add_node_to_counter_list (MarkovNode *first_node, MarkovNode
   first_node->counter_list_len++;
   first_node->total_next_word++;
   return true;
-
 }
 
 Node *get_node_from_database (MarkovChain *markov_chain, void *data_ptr)
@@ -149,7 +148,6 @@ Node *add_to_database (MarkovChain *markov_chain, void *data_ptr)
         }
       return markov_chain->database->last;
     }
-
 }
 
 MarkovNode *init_markov_node (void *data_ptr, MarkovChain *markov_chain)
