@@ -24,15 +24,15 @@ MarkovNode *get_next_random_node (MarkovNode *state_struct_ptr)
 {
   int random_number = randomize_number (state_struct_ptr->total_next_word);
   int sum = 0;
-  for (int i = 0; i < state_struct_ptr->counter_list_len; ++i)
+  NextNodeCounter *ptr = state_struct_ptr->counter_list;
+  while(ptr!= NULL)
     {
-      if (random_number >= sum && random_number <
-                                  (state_struct_ptr->counter_list
-                                   + i)->frequency + sum)
+      if (random_number >= sum && random_number < ptr->frequency + sum)
         {
-          return (state_struct_ptr->counter_list + i)->markov_node;
+          return ptr->markov_node;
         }
-      sum += (state_struct_ptr->counter_list + i)->frequency;
+      sum += ptr->frequency;
+      ptr++;
     }
   return NULL;
 }
